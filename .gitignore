@@ -1,0 +1,74 @@
+# --- Claude Code -----------------------------------------------------------
+CLAUDE.md
+CLAUDE_*.md
+.claude/
+
+# --- Project data & outputs ------------------------------------------------
+# Raw drone products and derived rasters are large; keep them local.
+data/*
+!data/.gitkeep
+!data/README.md
+
+outputs/*
+!outputs/.gitkeep
+!outputs/README.md
+
+# Common geospatial intermediate / large files (in case they leak elsewhere)
+*.tif
+*.tiff
+*.las
+*.laz
+*.ply
+*.obj
+*.e57
+*.copc.laz
+*.geotiff
+*.bil
+*.bsq
+*.img
+*.vrt
+*.gpkg-journal
+
+# But keep small sample / fixture rasters if explicitly added under tests/
+!tests/fixtures/**/*.tif
+
+# --- Python ----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+.installed.cfg
+pip-wheel-metadata/
+
+# Virtual envs
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# --- Jupyter ---------------------------------------------------------------
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+# Optional: strip notebook outputs via nbstripout instead of ignoring .ipynb
+
+# --- Tooling / IDE ---------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- OS --------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Secrets / env ---------------------------------------------------------
+.env
+.env.*
+!.env.example

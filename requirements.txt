@@ -1,0 +1,31 @@
+# Core geospatial stack — keep this list small and intentional.
+# Heavier deps (PyTorch, segmentation_models_pytorch, torchgeo, open3d, PDAL)
+# are NOT installed here; they get pulled in once we actually need them, and
+# only after explicit go-ahead. See CLAUDE.md.
+
+# --- Raster / vector I/O & geometry ---------------------------------------
+rasterio>=1.3
+rioxarray>=0.15
+xarray>=2024.1
+geopandas>=0.14
+shapely>=2.0
+pyproj>=3.6
+fiona>=1.9
+
+# --- DEM / hydrology / point-cloud-lite -----------------------------------
+whitebox>=2.3          # whiteboxtools wrapper, pure-Python install
+laspy>=2.5             # LAS/LAZ reader without PDAL bindings
+
+# --- Notebooks & visualization --------------------------------------------
+jupyterlab>=4.0
+ipykernel>=6.29
+matplotlib>=3.8
+contextily>=1.6
+folium>=0.16
+leafmap>=0.32
+
+# --- Utilities ------------------------------------------------------------
+numpy>=1.26
+pandas>=2.2
+tqdm>=4.66
+pyyaml>=6.0
