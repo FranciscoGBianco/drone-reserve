@@ -1,5 +1,5 @@
 # Core geospatial stack — keep this list small and intentional.
-# Heavier deps (PyTorch, segmentation_models_pytorch, torchgeo, open3d, PDAL)
+# Heavier deps (PyTorch, segmentation_models_pytorch, torchgeo, PDAL bindings)
 # are NOT installed here; they get pulled in once we actually need them, and
 # only after explicit go-ahead. See CLAUDE.md.
 
@@ -24,9 +24,25 @@ contextily>=1.6
 folium>=0.16
 leafmap>=0.32
 open3d>=0.19.0
+# Inline-notebook viewers for Open3D geometries:
+plotly>=5.18           # o3d.visualization.draw_plotly(geom) — simplest inline path
+jupyter-server-proxy>=4.1  # required for o3d.visualization.draw(geom) WebRTC in JupyterLab
 
 # --- Utilities ------------------------------------------------------------
 numpy>=1.26
 pandas>=2.2
 tqdm>=4.66
 pyyaml>=6.0
+
+# --- Optional: GPU acceleration -------------------------------------------
+# Not installed by default. To enable the --gpu path in
+# notebooks/visualize_orthomosaic.py and src/drone_reserve/utils.py, uncomment
+# ONE cupy line matching your installed CUDA toolkit and re-run `pip install -r`.
+#
+# cupy-cuda11x>=13.0    # if your CUDA toolkit is 11.x
+# cupy-cuda12x>=13.0    # if your CUDA toolkit is 12.x
+#
+# Open3D's CUDA t-geometry path additionally needs an Open3D wheel built with
+# CUDA. The default PyPI 'open3d' wheel is CPU-only; either replace it with the
+# 'open3d-cuda' nightly wheel or build Open3D from source with BUILD_CUDA_MODULE=ON.
+# The viewer auto-detects and falls back to CPU geometry ops when CUDA is absent.
