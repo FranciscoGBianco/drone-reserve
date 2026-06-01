@@ -142,9 +142,7 @@ the brief justification lives here so the rationale is visible.
   to "use dGNSS in dense forest." If the reserve uses this map, they'll
   want one raster, not two.
 
-## What I deliberately won't chase
-
-To keep the scope honest:
+## Limitations
 
 - **Multispectral / NDVI / NIR-derived indices** — single-campaign RGB
   only; nothing to compute them from.
@@ -181,14 +179,3 @@ Heavier deps (PyTorch, segmentation_models_pytorch, torchgeo, PDAL
 bindings) are intentionally **not** in `requirements.txt`. They get added
 when the corresponding pipeline step lands, after deciding whether the step
 runs locally (GTX 1650 Ti, 4 GB VRAM) or on Colab.
-
-## Conventions
-
-See `CLAUDE.md` (local only, gitignored) for the full collaboration spec.
-Highlights:
-
-- Always tile / stream large rasters — never load whole products into RAM.
-- Validate against ground truth and print residuals / RMSE / bias.
-- No silent fallbacks: missing inputs raise; pipeline never substitutes.
-- Notebooks orchestrate, `src/` holds reusable logic.
-- Ask before adding heavy dependencies.
