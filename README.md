@@ -110,13 +110,16 @@ in `src/drone_reserve/`. Tags: **[R]** reproduces a poster result,
       beat Pix4D; the two are close, so **both** go into step 03 and
       leave-one-out CV picks the production DTM. dGNSS-DTM excluded from
       accuracy claims (circular — interpolated from the same points). **[R + X]**
-- [ ] **03 — Bias-corrected SMRF DTM (talar).** Take the SMRF surface;
-      sample its residual at the 42 dGNSS points; fit a smooth, regularized
-      correction surface (thin-plate-spline RBF) over the points' support
-      region and taper to zero beyond it; add back to SMRF. Validate with
-      **leave-one-out CV** (corrected vs SMRF-raw) so it isn't circular; if
-      the correction doesn't beat SMRF-raw, ship SMRF-alone and say so.
-      Pastizal has no dGNSS → SMRF-raw there, stated plainly. **[X]**
+- [X] **03 — dGNSS bias-corrected DTM (talar).** Sampled base-DTM residuals at
+      the 42 dGNSS points; the residual proved to be a **constant + tilt** (datum
+      discrepancy), so the correction is a global **affine trend**, not a local
+      surface (LOO showed TPS overfits and loses to the trend). Applied to both
+      bases; validated leave-one-out: SMRF 0.43→0.31 m, CSF-retuned 0.31→0.22 m
+      (~30% each), bias zeroed. **Canonical = SMRF + affine**
+      (`outputs/03_hybrid/talar_dtm_corrected_0p5m.tif`) for coverage;
+      CSF-retuned+affine kept as cross-check. Gain concentrated in dense canopy
+      (Alta 0.58→0.38) with a small Baja cost. Pastizal = SMRF-raw, uncorrected
+      (no dGNSS there). **[X]**
 - [ ] **04 — CHM.** `DSM − DTM` for each DTM variant; denoise, mask
       negatives. Validate against the 11 measured trees per CHM variant;
       reproduce the poster's VANT-CHM and dGNSS-CHM scatter plots, then
