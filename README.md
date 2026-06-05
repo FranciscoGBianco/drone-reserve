@@ -98,7 +98,7 @@ in `src/drone_reserve/`. Tags: **[R]** reproduces a poster result,
 - [X] **01 — Inventory & sanity check.** Open ortho, DSM, point cloud
       tile(s). Confirm CRS (expect EPSG:32721), extents, GSD, file sizes.
       Quick thumbnails. **[R/X]**
-- [ ] **02 — Point cloud → DTM/DSM.** Run **CSF** and **SMRF** ground
+- [X] **02 — Point cloud → DTM/DSM.** Run **CSF** and **SMRF** ground
       filters on the dense cloud; also ingest the existing Pix4D-DTM.
       Rasterize, fill, validate **all three** vertical accuracies against
       the 42 dGNSS points (RMSE, bias, residual plots, per-zone breakdown
