@@ -69,10 +69,12 @@ Each item below maps to a pipeline step (see TODO list).
    inputs and a deterministic output path. No QGIS in the critical path.
 2. **Head-to-head DTM ground-filtering comparison** (Pix4D-DTM vs CSF vs
    SMRF, all validated against the 42 dGNSS) — directly attacks the
-   R²=0.05 headline finding.
-3. **A hybrid DTM** that splices dGNSS-derived ground (in dense canopy)
-   into the best photogrammetric DTM (elsewhere), producing a single
-   continuous "best available" DTM for the reserve.
+   R²=0.05 headline finding. **Result:** SMRF more than halves Pix4D's
+   dense-canopy error (RMSE 1.25 m → 0.58 m; overall 0.90 m → 0.43 m).
+3. **A bias-corrected SMRF DTM** that uses the 42 dGNSS points as *control*
+   (not as a wholesale surface) to model and remove SMRF's residual bias,
+   producing a single continuous, ground-truth-pinned DTM — with SMRF-alone
+   kept as the honest baseline and leave-one-out CV deciding which ships.
 4. **Habitat-aware CHM error model.** Re-run CHM accuracy stratified by
    habitat class and by continuous canopy density, not just the binary
    Alta/Baja split.
@@ -98,14 +100,23 @@ in `src/drone_reserve/`. Tags: **[R]** reproduces a poster result,
 - [X] **01 — Inventory & sanity check.** Open ortho, DSM, point cloud
       tile(s). Confirm CRS (expect EPSG:32721), extents, GSD, file sizes.
       Quick thumbnails. **[R/X]**
-- [X] **02 — Point cloud → DTM/DSM.** Run **CSF** and **SMRF** ground
-      filters on the dense cloud; also ingest the existing Pix4D-DTM.
-      Rasterize, fill, validate **all three** vertical accuracies against
-      the 42 dGNSS points (RMSE, bias, residual plots, per-zone breakdown
-      that reproduces the poster's table). **[R + X]**
-- [ ] **03 — Hybrid DTM.** Build a continuous DTM that uses
-      dGNSS-derived ground in dense canopy and the best photogrammetric
-      DTM elsewhere. Re-validate. **[X]**
+- [X] **02 — Point cloud → DTM/DSM.** Ran **CSF** and **SMRF** ground
+      filters (PDAL) on the dense cloud + ingested the Pix4D-DTM and
+      dGNSS-DTM. Validated against the 42 dGNSS points, reproduced the
+      poster's Pix4D row (MAE/RMSE to 2 dp), added a continuous
+      canopy-density vs residual analysis + coverage / common-subset
+      comparison. **Outcome:** SMRF (RMSE 0.43 m, 0.58 m dense) and a
+      retuned CSF (more accurate at control points, lower coverage) both
+      beat Pix4D; the two are close, so **both** go into step 03 and
+      leave-one-out CV picks the production DTM. dGNSS-DTM excluded from
+      accuracy claims (circular — interpolated from the same points). **[R + X]**
+- [ ] **03 — Bias-corrected SMRF DTM (talar).** Take the SMRF surface;
+      sample its residual at the 42 dGNSS points; fit a smooth, regularized
+      correction surface (thin-plate-spline RBF) over the points' support
+      region and taper to zero beyond it; add back to SMRF. Validate with
+      **leave-one-out CV** (corrected vs SMRF-raw) so it isn't circular; if
+      the correction doesn't beat SMRF-raw, ship SMRF-alone and say so.
+      Pastizal has no dGNSS → SMRF-raw there, stated plainly. **[X]**
 - [ ] **04 — CHM.** `DSM − DTM` for each DTM variant; denoise, mask
       negatives. Validate against the 11 measured trees per CHM variant;
       reproduce the poster's VANT-CHM and dGNSS-CHM scatter plots, then
@@ -138,9 +149,12 @@ the brief justification lives here so the rationale is visible.
   extension of the poster's headline finding.
 - **Per-habitat error tables** once segmentation is in place — far more
   useful for a conservation reader than two-zone splits.
-- **A publishable single-product hybrid DTM**, not just the recommendation
-  to "use dGNSS in dense forest." If the reserve uses this map, they'll
-  want one raster, not two.
+- **A publishable single-product DTM**, not just the recommendation to
+  "use dGNSS in dense forest." Step 02 reframed this: a tuned SMRF filter
+  already recovers most of the accuracy the poster attributed to dGNSS, so
+  the contribution is (a) SMRF as a low-cost production DTM, and (b) an
+  optional dGNSS-bias-correction that squeezes out the residual ~0.2 m —
+  honestly validated by leave-one-out, not by passing through control points.
 
 ## Limitations
 
