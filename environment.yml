@@ -1,0 +1,56 @@
+# Conda environment for the drone-reserve project (Windows + conda-forge).
+# This is the recommended setup once we need PDAL — pure-pip PDAL on Windows
+# is fragile because PDAL has no Windows wheels on PyPI.
+#
+# Create:    conda env create -f environment.yml
+# Update:    conda env update -f environment.yml --prune
+# Activate:  conda activate drone-reserve
+# Kernel:    python -m ipykernel install --user --name drone-reserve --display-name "Python (drone-reserve)"
+
+name: drone-reserve
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.12
+
+  # Point clouds / DTM ground filters — the reason this env exists.
+  - pdal>=2.6
+  - python-pdal>=3.4
+  - gdal>=3.8
+
+  # Raster / vector I/O & geometry
+  - rasterio>=1.3
+  - rioxarray>=0.15
+  - xarray>=2024.1
+  - geopandas>=0.14
+  - shapely>=2.0
+  - pyproj>=3.6
+  - fiona>=1.9
+
+  # DEM / hydrology / point-cloud-lite
+  - whitebox>=2.3
+  - laspy>=2.5
+
+  # Notebooks & visualization
+  - jupyterlab>=4.0
+  - ipykernel>=6.29
+  - matplotlib>=3.8
+  - contextily>=1.6
+  - folium>=0.16
+  - leafmap>=0.32
+  - open3d>=0.18
+  - plotly>=5.18
+  - jupyter-server-proxy>=4.1
+
+  # Utilities
+  - numpy>=1.26
+  - pandas>=2.2
+  - scipy>=1.13
+  - tqdm>=4.66
+  - pyyaml>=6.0
+
+  # Editable install of our own package.
+  - pip
+  - pip:
+    - -e .

@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "drone-reserve"
+version = "0.0.0"
+description = "Drone RGB photogrammetry pipeline for the Reserva Natural Municipal del Pilar."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [{ name = "Francisco González Bianco" }]
+# Runtime dependencies are intentionally NOT listed here.
+# Use requirements.txt (pip / venv) or environment.yml (conda) — single source of truth per env.
+
+[tool.setuptools.packages.find]
+where = ["src"]

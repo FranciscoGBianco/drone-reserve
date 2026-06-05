@@ -1,7 +1,13 @@
 # Core geospatial stack — keep this list small and intentional.
-# Heavier deps (PyTorch, segmentation_models_pytorch, torchgeo, PDAL bindings)
-# are NOT installed here; they get pulled in once we actually need them, and
-# only after explicit go-ahead. See CLAUDE.md.
+# Heavier deps (PyTorch, segmentation_models_pytorch, torchgeo) are NOT
+# installed here; they get pulled in once we actually need them, and only
+# after explicit go-ahead. See CLAUDE.md.
+#
+# IMPORTANT: This file is the venv / pip path. For step 02 onwards (PDAL
+# CSF/SMRF ground filtering) use the conda environment instead — see
+# `environment.yml` in this repo. PDAL has no Windows wheels on PyPI, so
+# pip-installing it on Windows is unreliable. The conda env mirrors this
+# requirements list plus pdal + python-pdal + gdal from conda-forge.
 
 # --- Raster / vector I/O & geometry ---------------------------------------
 rasterio>=1.3
@@ -15,6 +21,7 @@ fiona>=1.9
 # --- DEM / hydrology / point-cloud-lite -----------------------------------
 whitebox>=2.3          # whiteboxtools wrapper, pure-Python install
 laspy>=2.5             # LAS/LAZ reader without PDAL bindings
+scipy>=1.13            # KDTree for canopy-density at points (step 02)
 
 # --- Notebooks & visualization --------------------------------------------
 jupyterlab>=4.0

@@ -162,20 +162,44 @@ the brief justification lives here so the rationale is visible.
 ├── outputs/      # deterministic pipeline artifacts — NOT tracked
 ├── previuos/     # 2025 RAE poster materials (abstract, PDF, figures)
 ├── reports/      # technical report sources + final PDFs
-├── requirements.txt
+├── requirements.txt    # pip / venv path
+├── environment.yml     # conda env (PDAL stack)
+├── pyproject.toml      # editable install of the drone_reserve package
 ├── .gitignore
 └── README.md
 ```
 
 ## Setup
 
-```bash
+There are two supported environments. **Both** require the editable install
+of this package (`pip install -e .`) so notebooks can `import drone_reserve`
+without `sys.path` shims.
+
+### Option A — pip venv (good for steps 01 / inventory + viewer)
+
+```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1     # PowerShell on Windows
 pip install -r requirements.txt
+pip install -e .
 ```
 
-Heavier deps (PyTorch, segmentation_models_pytorch, torchgeo, PDAL
-bindings) are intentionally **not** in `requirements.txt`. They get added
-when the corresponding pipeline step lands, after deciding whether the step
-runs locally (GTX 1650 Ti, 4 GB VRAM) or on Colab.
+### Option B — conda env (required from step 02 onwards — PDAL)
+
+PDAL has no Windows wheels on PyPI, so pip-installing it is fragile. Use the
+conda spec instead — it bundles the PDAL C++ library and the `python-pdal`
+bindings together:
+
+```powershell
+conda env create -f environment.yml
+conda activate drone-reserve
+python -m ipykernel install --user --name drone-reserve --display-name "Python (drone-reserve)"
+```
+
+`environment.yml` already runs `pip install -e .` for you, so the package is
+importable inside the env.
+
+Heavier deps (PyTorch, segmentation_models_pytorch, torchgeo) are still
+intentionally **not** in either env. They get added when the corresponding
+pipeline step lands, after deciding whether the step runs locally
+(GTX 1650 Ti, 4 GB VRAM) or on Colab.
