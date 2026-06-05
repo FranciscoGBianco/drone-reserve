@@ -95,7 +95,7 @@ Each item maps to a numbered notebook in `notebooks/` and reusable code
 in `src/drone_reserve/`. Tags: **[R]** reproduces a poster result,
 **[X]** extends beyond the poster.
 
-- [ ] **01 — Inventory & sanity check.** Open ortho, DSM, point cloud
+- [X] **01 — Inventory & sanity check.** Open ortho, DSM, point cloud
       tile(s). Confirm CRS (expect EPSG:32721), extents, GSD, file sizes.
       Quick thumbnails. **[R/X]**
 - [ ] **02 — Point cloud → DTM/DSM.** Run **CSF** and **SMRF** ground
