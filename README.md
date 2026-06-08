@@ -118,8 +118,10 @@ in `src/drone_reserve/`. Tags: **[R]** reproduces a poster result,
       (~30% each), bias zeroed. **Canonical = SMRF + affine**
       (`outputs/03_hybrid/talar_dtm_corrected_0p5m.tif`) for coverage;
       CSF-retuned+affine kept as cross-check. Gain concentrated in dense canopy
-      (Alta 0.58→0.38) with a small Baja cost. Pastizal = SMRF-raw, uncorrected
-      (no dGNSS there). **[X]**
+      (Alta 0.58→0.38) with a small Baja cost. DTMs **gap-filled to ~100%**
+      (fill only empty cells → RMSE 0.43→0.44, vs 0.61 if widening the IDW
+      radius) with a distance-to-measured **confidence layer**; CHM-ready.
+      Pastizal = SMRF-raw + fill, uncorrected (no dGNSS there). **[X]**
 - [ ] **04 — CHM.** `DSM − DTM` for each DTM variant; denoise, mask
       negatives. Validate against the 11 measured trees per CHM variant;
       reproduce the poster's VANT-CHM and dGNSS-CHM scatter plots, then
