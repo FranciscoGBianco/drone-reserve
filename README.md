@@ -140,25 +140,6 @@ in `src/drone_reserve/`. Tags: **[R]** reproduces a poster result,
 - [ ] **10 — Report.** Technical PDF: methods, validation, results,
       with the poster as the baseline comparison. **[X]**
 
-## New analyses worth adding (kept short, only the ones that pay off)
-
-These came out of reading the poster carefully. Each is in the TODO above;
-the brief justification lives here so the rationale is visible.
-
-- **Stratify CHM error by continuous canopy density**, not just the
-  binary Alta/Baja split. With ~hundreds of detected trees from step 06,
-  we can plot CHM RMSE as a function of local canopy cover (%) and find
-  where photogrammetry stops being trustworthy. This is the natural
-  extension of the poster's headline finding.
-- **Per-habitat error tables** once segmentation is in place — far more
-  useful for a conservation reader than two-zone splits.
-- **A publishable single-product DTM**, not just the recommendation to
-  "use dGNSS in dense forest." Step 02 reframed this: a tuned SMRF filter
-  already recovers most of the accuracy the poster attributed to dGNSS, so
-  the contribution is (a) SMRF as a low-cost production DTM, and (b) an
-  optional dGNSS-bias-correction that squeezes out the residual ~0.2 m —
-  honestly validated by leave-one-out, not by passing through control points.
-
 ## Limitations
 
 - **Multispectral / NDVI / NIR-derived indices** — single-campaign RGB
