@@ -122,10 +122,13 @@ in `src/drone_reserve/`. Tags: **[R]** reproduces a poster result,
       (fill only empty cells → RMSE 0.43→0.44, vs 0.61 if widening the IDW
       radius) with a distance-to-measured **confidence layer**; CHM-ready.
       Pastizal = SMRF-raw + fill, uncorrected (no dGNSS there). **[X]**
-- [ ] **04 — CHM.** `DSM − DTM` for each DTM variant; denoise, mask
-      negatives. Validate against the 11 measured trees per CHM variant;
-      reproduce the poster's VANT-CHM and dGNSS-CHM scatter plots, then
-      add the hybrid-CHM variant. **[R + X]**
+- [X] **04 — CHM.** `DSM − DTM` per variant (DSM bilinear-resampled to the
+      0.5 m grid via streamed WarpedVRT; negatives clamped). Validated vs the 11
+      field tree heights (crown-max): **Hybrid CHM best — r=0.97, RMSE 0.87 m,
+      bias +0.19 m**, beating raw VANT (r=0.93, RMSE 1.99 m, bias +1.30 m) and
+      dGNSS (r=0.95). The step-03 correction cuts tall-tree bias +1.3→+0.2 m.
+      Reproduces the poster + improves it. Tree trunk positions needed QGIS QC
+      (dGNSS error under canopy; two were swapped). **[R + X]**
 - [ ] **05 — Habitat segmentation.** Semantic classes: wetland, forest
       canopy, low vegetation, bare soil, water, trails. RGB-only;
       tile-based inference. **[X]**
