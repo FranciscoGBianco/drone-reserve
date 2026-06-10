@@ -116,7 +116,7 @@ in `src/drone_reserve/`. Tags: **[R]** reproduces a poster result,
       surface (LOO showed TPS overfits and loses to the trend). Applied to both
       bases; validated leave-one-out: SMRF 0.43→0.31 m, CSF-retuned 0.31→0.22 m
       (~30% each), bias zeroed. **Canonical = SMRF + affine**
-      (`outputs/03_hybrid/talar_dtm_corrected_0p5m.tif`) for coverage;
+      (`outputs/03_corrected/talar_dtm_corrected_0p5m.tif`) for coverage;
       CSF-retuned+affine kept as cross-check. Gain concentrated in dense canopy
       (Alta 0.58→0.38) with a small Baja cost. DTMs **gap-filled to ~100%**
       (fill only empty cells → RMSE 0.43→0.44, vs 0.61 if widening the IDW
@@ -124,7 +124,7 @@ in `src/drone_reserve/`. Tags: **[R]** reproduces a poster result,
       Pastizal = SMRF-raw + fill, uncorrected (no dGNSS there). **[X]**
 - [X] **04 — CHM.** `DSM − DTM` per variant (DSM bilinear-resampled to the
       0.5 m grid via streamed WarpedVRT; negatives clamped). Validated vs the 11
-      field tree heights (crown-max): **Hybrid CHM best — r=0.97, RMSE 0.87 m,
+      field tree heights (crown-max): **Corrected CHM best — r=0.97, RMSE 0.87 m,
       bias +0.19 m**, beating raw VANT (r=0.93, RMSE 1.99 m, bias +1.30 m) and
       dGNSS (r=0.95). The step-03 correction cuts tall-tree bias +1.3→+0.2 m.
       Reproduces the poster + improves it. Tree trunk positions needed QGIS QC
@@ -139,7 +139,7 @@ in `src/drone_reserve/`. Tags: **[R]** reproduces a poster result,
 - [ ] **07 — Landscape metrics.** Canopy cover, mean canopy height,
       wetland extent, edge density, fragmentation, per zone. **[X]**
 - [ ] **08 — Hydrology.** Flow accumulation, depression storage,
-      probable inundation extents from the hybrid DTM (WhiteboxTools). **[X]**
+      probable inundation extents from the corrected DTM (WhiteboxTools). **[X]**
 - [ ] **09 — Web map.** Folium / leafmap deliverable with layers for
       ortho, CHM, habitat classes, tree crowns, hydrology. **[X]**
 - [ ] **10 — Report.** Technical PDF: methods, validation, results,

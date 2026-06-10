@@ -6,7 +6,7 @@ so we resample everything onto one common grid and difference. Resampling uses
 loaded into memory at full resolution (project rule: tile, don't load).
 
 Per DTM variant we get a CHM, which lets us both reproduce the poster's
-VANT-CHM / dGNSS-CHM comparison and add the bias-corrected hybrid CHM.
+VANT-CHM / dGNSS-CHM comparison and add the bias-corrected CHM.
 
 Validation samples each tree's height as the **maximum CHM within a crown radius**
 of its dGNSS position — the GPS point marks the trunk, while the canopy apex sits
