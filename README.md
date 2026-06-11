@@ -129,9 +129,14 @@ in `src/drone_reserve/`. Tags: **[R]** reproduces a poster result,
       dGNSS (r=0.95). The step-03 correction cuts tall-tree bias +1.3→+0.2 m.
       Reproduces the poster + improves it. Tree trunk positions needed QGIS QC
       (dGNSS error under canopy; two were swapped). **[R + X]**
-- [ ] **05 — Habitat segmentation.** Semantic classes: wetland, forest
-      canopy, low vegetation, bare soil, water, trails. RGB-only;
-      tile-based inference. **[X]**
+- [~] **05 — Habitat segmentation (unsupervised baseline).** KMeans on
+      **ExG + brightness + CHM** (RGB-only, no NDVI — height is the key axis),
+      clusters named by a transparent centroid rule; forest canopy pinned to
+      measured CHM ≥ 3 m. Reliable 4-class set (forest canopy, low vegetation,
+      bare/dry ground, water). Areas: talar 2.4/3.6/5.9 ha, pastizal 2.0/5.9/5.5;
+      10/11 field trees land in vegetation classes. No water present; **wetland &
+      trails not separable in RGB** (deferred). Preliminary (no accuracy figure) —
+      upgrade path is a supervised Random Forest with QGIS labels. **[X]**
 - [ ] **06 — Individual tree detection.** Local-maxima / watershed on
       CHM and/or point-cloud-based segmentation inside the talar; match
       to the 11 measured tree positions; report population-level height
