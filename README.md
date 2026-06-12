@@ -137,10 +137,13 @@ in `src/drone_reserve/`. Tags: **[R]** reproduces a poster result,
       10/11 field trees land in vegetation classes. No water present; **wetland &
       trails not separable in RGB** (deferred). Preliminary (no accuracy figure) —
       upgrade path is a supervised Random Forest with QGIS labels. **[X]**
-- [ ] **06 — Individual tree detection.** Local-maxima / watershed on
-      CHM and/or point-cloud-based segmentation inside the talar; match
-      to the 11 measured tree positions; report population-level height
-      distribution. **[X]**
+- [X] **06 — Individual tree detection.** CHM local-maxima with height-scaled
+      allometric NMS (Popescu-style; scipy only). **Detection 9/11** of the field
+      trees (2 misses are the lowest open shrubs), **matched-height RMSE 0.83 m,
+      bias +0.14 m** — both robust. Extends the poster's n=11 to a forest-wide
+      height distribution (mean ~5 m, tail to ~17 m). Density ≈400 trees/ha but
+      **parameter-sensitive (range 305–808)** — reported as indicative, not measured.
+      Crown delineation (watershed) deferred (would add scikit-image). **[X]**
 - [ ] **07 — Landscape metrics.** Canopy cover, mean canopy height,
       wetland extent, edge density, fragmentation, per zone. **[X]**
 - [ ] **08 — Hydrology.** Flow accumulation, depression storage,
