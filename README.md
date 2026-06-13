@@ -144,8 +144,12 @@ in `src/drone_reserve/`. Tags: **[R]** reproduces a poster result,
       height distribution (mean ~5 m, tail to ~17 m). Density ≈400 trees/ha but
       **parameter-sensitive (range 305–808)** — reported as indicative, not measured.
       Crown delineation (watershed) deferred (would add scikit-image). **[X]**
-- [ ] **07 — Landscape metrics.** Canopy cover, mean canopy height,
-      wetland extent, edge density, fragmentation, per zone. **[X]**
+- [X] **07 — Landscape metrics.** Per-zone canopy (cover %, mean/p95/max height)
+      + FRAGSTATS-style fragmentation (NP, PD, MPS, LPI, edge density) via
+      scipy.ndimage, with a **25 m² MMU sieve** so per-pixel noise doesn't inflate
+      patch counts. **Talar forest consolidated** (cover ≥3 m 20%, LPI 5.2%) vs
+      **pastizal forest scattered** (15%, LPI 1.8%) in a grassland matrix.
+      Wetland extent **not reported** (not separable in RGB). **[X]**
 - [ ] **08 — Hydrology.** Flow accumulation, depression storage,
       probable inundation extents from the corrected DTM (WhiteboxTools). **[X]**
 - [ ] **09 — Web map.** Folium / leafmap deliverable with layers for
