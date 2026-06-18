@@ -150,8 +150,13 @@ in `src/drone_reserve/`. Tags: **[R]** reproduces a poster result,
       patch counts. **Talar forest consolidated** (cover ≥3 m 20%, LPI 5.2%) vs
       **pastizal forest scattered** (15%, LPI 1.8%) in a grassland matrix.
       Wetland extent **not reported** (not separable in RGB). **[X]**
-- [ ] **08 — Hydrology.** Flow accumulation, depression storage,
-      probable inundation extents from the corrected DTM (WhiteboxTools). **[X]**
+- [X] **08 — Hydrology (WhiteboxTools).** Fill/breach conditioning, depression
+      storage, D8 flow accumulation + streams, and **stochastic depression
+      analysis** (probable inundation propagating the ~0.3 m DTM error). Both zones
+      ~24–25% ponding-prone (P≥0.5: talar 3.0 ha, pastizal 3.3 ha); ponding mostly
+      shallow/distributed (the wetland signal), one deep elongated feature per zone
+      flagged as ditch/artifact. Flat floodplain → drainage network indicative only.
+      (Note: WBT needs uncompressed input GeoTIFFs.) **[X]**
 - [ ] **09 — Web map.** Folium / leafmap deliverable with layers for
       ortho, CHM, habitat classes, tree crowns, hydrology. **[X]**
 - [ ] **10 — Report.** Technical PDF: methods, validation, results,
