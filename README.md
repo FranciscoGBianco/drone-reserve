@@ -157,8 +157,13 @@ in `src/drone_reserve/`. Tags: **[R]** reproduces a poster result,
       shallow/distributed (the wetland signal), one deep elongated feature per zone
       flagged as ditch/artifact. Flat floodplain → drainage network indicative only.
       (Note: WBT needs uncompressed input GeoTIFFs.) **[X]**
-- [ ] **09 — Web map.** Folium / leafmap deliverable with layers for
-      ortho, CHM, habitat classes, tree crowns, hydrology. **[X]**
+- [X] **08b — 3D inundation + illustrative hydrodynamics (PyVista, Landlab).**
+      (A) *Defensible* progressive flood-stage 3D scene on the corrected DTM —
+      static image, rising-flood GIF, and an interactive HTML embedded in the web
+      map. (B) *Illustrative-only* Landlab `OverlandFlow` under synthetic rainfall
+      (no site rainfall/inflow data → labelled illustrative, not a prediction). **[X]**
+- [ ] **09 — Web map.** Folium / leafmap deliverable with layers for ortho, CHM,
+      habitat classes, tree crowns, hydrology + the **3D inundation HTML** (08b). **[X]**
 - [ ] **10 — Report.** Technical PDF: methods, validation, results,
       with the poster as the baseline comparison. **[X]**
 

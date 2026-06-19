@@ -50,7 +50,14 @@ dependencies:
   - tqdm>=4.66
   - pyyaml>=6.0
 
-  # Editable install of our own package.
+  # 3D visualization + illustrative hydrodynamics (step 08b)
   - pip
   - pip:
     - -e .
+    - pyvista>=0.48          # 3D terrain/water rendering + interactive HTML export
+    - "trame>=3.0"           # backend for pyvista export_html (web-embeddable 3D)
+    - trame-vtk
+    - trame-vuetify
+    - nest_asyncio2          # lets pyvista export_html launch the trame server synchronously
+    - imageio>=2.30          # GIF export for the rising-flood animation
+    - landlab>=2.9           # OverlandFlow shallow-water solver (illustrative hydrodynamics)
