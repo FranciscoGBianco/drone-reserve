@@ -72,3 +72,4 @@ desktop.ini
 .env
 .env.*
 !.env.example
+HANDOFF.md

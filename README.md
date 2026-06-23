@@ -162,8 +162,15 @@ in `src/drone_reserve/`. Tags: **[R]** reproduces a poster result,
       static image, rising-flood GIF, and an interactive HTML embedded in the web
       map. (B) *Illustrative-only* Landlab `OverlandFlow` under synthetic rainfall
       (no site rainfall/inflow data → labelled illustrative, not a prediction). **[X]**
-- [ ] **09 — Web map.** Folium / leafmap deliverable with layers for ortho, CHM,
-      habitat classes, tree crowns, hydrology + the **3D inundation HTML** (08b). **[X]**
+- [X] **09 — Web map.** Self-contained, GitHub-Pages-ready static site
+      (`outputs/09_webmap/`, ~155 MB) built with Folium. Tiled **orthomosaic**
+      (gdal2tiles XYZ, both zones) + toggleable overlays for **CHM**, **habitat
+      classes**, **inundation probability** and **depression storage** (reprojected
+      to web-mercator PNGs), **detected trees** sized/coloured by height, zone
+      footprints, and a single collapsible legend. The Step 08b **interactive 3D
+      flood-stage scene** and rising-flood GIF are embedded in a landing page
+      (`index.html`) with headline stats pulled live from the metric tables. Logic
+      in `src/drone_reserve/webmap.py`. **[X]**
 - [ ] **10 — Report.** Technical PDF: methods, validation, results,
       with the poster as the baseline comparison. **[X]**
 
